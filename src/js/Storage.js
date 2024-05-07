@@ -47,4 +47,19 @@ export default class Storage {
     });
     return sortedCategories;
   }
+  static saveCategories(categoryToSave) {
+    const savedCategories = Storage.getAllCategories();
+    const existedItem = savedCategories.find((c) => c.id === categoryToSave.id);
+    if (existedItem) {
+      // edit category
+      existedItem.title = categoryToSave.title;
+      existedItem.description = categoryToSave.description;
+    } else {
+      // add new category
+      categoryToSave.id = new Date().getTime();
+      categoryToSave.createdAt = new Date().toISOString();
+      savedCategories.push(categoryToSave);
+    }
+    localStorage.setItem("category", JSON.stringify(saveCategories));
+  }
 }
