@@ -62,4 +62,27 @@ export default class Storage {
     }
     localStorage.setItem("category", JSON.stringify(saveCategories));
   }
+  static getAllProducts() {
+    const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+    //sort => desc & based on createdAt
+    return savedProducts.sort((a, b) => {
+      new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1;
+    });
+  }
+  static saveProducts(productToSave) {
+    const savedProducts = Storage.getAllProducts();
+    const existedItem = savedProducts.find((c) => c.id === productToSave.id);
+    if (existedItem) {
+      // edit product
+      existedItem.title = productToSave.title;
+      existedItem.quantity = productToSave.quantity;
+      existedItem.category = productToSave.category;
+    } else {
+      // add new product
+      productToSave.id = new Date().getTime();
+      productToSave.createdAt = new Date().toISOString();
+      savedProducts.push(productToSave);
+    }
+    localStorage.setItem("products", JSON.stringify(savedProducts));
+  }
 }
