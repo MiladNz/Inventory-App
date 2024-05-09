@@ -23,46 +23,55 @@
       <!-- app content -->
       <div class="container max-w-screen-sm mx-auto">
         <!-- category form -->
-        <div class="mb-6">
-          <h2 class="text-xl text-slate-300 font-bold mb-2">
-            Add New Category
-          </h2>
-          <form class="bg-slate-700 p-4 rounded-lg flex flex-col gap-y-4">
-            <div class="">
-              <label for="category-title" class="block mb-1 text-slate-400">
-                Category Title
-              </label>
-              <input
-                type="text"
-                name="category-title"
-                id="category-title"
-                class="bg-transparent rounded-xl border border-slate-500 text-slate-400" />
-            </div>
-            <div class="">
-              <label
-                for="category-description"
-                class="block mb-1 text-slate-400">
-                Category description
-              </label>
-              <textarea
-                type="text"
-                name="category-description"
-                id="category-description"
-                class="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full"></textarea>
-            </div>
-            <div class="flex items-center justify-between gap-x-4">
-              <button
-                class="flex-1 bg-transparent text-slate-400 rounded-xl border border-slate-400 py-2">
-                Cancel
-              </button>
-              <button
-                id="add-new-category"
-                class="flex-1 bg-slate-500 text-slate-200 rounded-xl py-2">
-                Add new category
-              </button>
-            </div>
-          </form>
-        </div>
+        <section>
+          <div class="mb-6 hidden" id="category-wrapper">
+            <h2 class="text-xl text-slate-300 font-bold mb-2">
+              Add New Category
+            </h2>
+            <form class="bg-slate-700 p-4 rounded-lg flex flex-col gap-y-4">
+              <div class="">
+                <label for="category-title" class="block mb-1 text-slate-400">
+                  Category Title
+                </label>
+                <input
+                  type="text"
+                  name="category-title"
+                  id="category-title"
+                  class="bg-transparent rounded-xl border border-slate-500 text-slate-400" />
+              </div>
+              <div class="">
+                <label
+                  for="category-description"
+                  class="block mb-1 text-slate-400">
+                  Category description
+                </label>
+                <textarea
+                  type="text"
+                  name="category-description"
+                  id="category-description"
+                  class="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full"></textarea>
+              </div>
+              <div class="flex items-center justify-between gap-x-4">
+                <button
+                  id="cancel-add-category"
+                  class="flex-1 bg-transparent text-slate-400 rounded-xl border border-slate-400 py-2">
+                  Cancel
+                </button>
+                <button
+                  id="add-new-category"
+                  class="flex-1 bg-slate-500 text-slate-200 rounded-xl py-2">
+                  Add new category
+                </button>
+              </div>
+            </form>
+          </div>
+          <button
+            id="toggle-add-category"
+            class="text-slate-600 text-lg mb-4 font-medium">
+            Add new Category?
+          </button>
+        </section>
+
         <!-- product form -->
         <div class="mb-6">
           <h2 class="text-xl text-slate-300 font-bold mb-2">Add New Product</h2>

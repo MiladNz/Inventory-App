@@ -46,9 +46,8 @@ class ProductView {
             ${item.quantity}
           </span>
           <button
-            class="border px-2 py-0.5 rounded-2xl border-red-500 text-red-400" data-id=${
-              item.id
-            }>
+            class="border px-2 py-0.5 rounded-2xl border-red-500 text-red-400" 
+            data-id=${item.id}>
             delete
           </button>
         </div>
