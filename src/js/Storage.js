@@ -35,9 +35,6 @@ const categories = [
 ];
 
 export default class Storage {
-  //1. add new category
-  //2. save category
-  //3. get all categories
   static getAllCategories() {
     const savedCategories = JSON.parse(localStorage.getItem("category")) || [];
     //sort => desc & based on createdAt
@@ -87,5 +84,10 @@ export default class Storage {
       savedProducts.push(productToSave);
     }
     localStorage.setItem("products", JSON.stringify(savedProducts));
+  }
+  static deleteProduct(id) {
+    const savedProducts = Storage.getAllProducts();
+    const filteredProducts = savedProducts.filter((p) => p.id !== parseInt(id));
+    localStorage.setItem("products", JSON.stringify(filteredProducts));
   }
 }

@@ -3,7 +3,6 @@ import Storage from "./Storage.js";
 const addNewProductBtn = document.getElementById("add-new-product");
 const searchInput = document.querySelector("#search-input");
 const selectedSort = document.querySelector("#sort-products");
-
 class ProductView {
   constructor() {
     addNewProductBtn.addEventListener("click", (e) => this.addNewProduct(e));
@@ -46,8 +45,8 @@ class ProductView {
             ${item.quantity}
           </span>
           <button
-            class="border px-2 py-0.5 rounded-2xl border-red-500 text-red-400" 
-            data-id=${item.id}>
+            class="delete-product border px-2 py-0.5 rounded-2xl border-red-500 text-red-400" 
+            data-product-id=${item.id}>
             delete
           </button>
         </div>
@@ -56,6 +55,11 @@ class ProductView {
 
     const productsDOM = document.getElementById("products-list");
     productsDOM.innerHTML = result;
+
+    const deleteProductBtns = [...document.querySelectorAll(".delete-product")];
+    deleteProductBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => this.deleteProduct(e));
+    });
   }
 
   searchProduct(e) {
@@ -68,6 +72,12 @@ class ProductView {
   sortProducts(e) {
     const value = e.target.value;
     this.products = Storage.getAllProducts(value);
+    this.createProductsList(this.products);
+  }
+  deleteProduct(e) {
+    const productId = e.target.dataset.productId;
+    Storage.deleteProduct(productId);
+    this.products = Storage.getAllProducts();
     this.createProductsList(this.products);
   }
 }
