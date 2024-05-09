@@ -1,10 +1,12 @@
 import Storage from "./Storage.js";
 
 const addNewProductBtn = document.getElementById("add-new-product");
+const searchInput = document.querySelector("#search-input");
 
 class ProductView {
   constructor() {
     addNewProductBtn.addEventListener("click", (e) => this.addNewProduct(e));
+    searchInput.addEventListener("input", (e) => this.searchProduct(e));
     this.products = [];
   }
   setApp() {
@@ -19,12 +21,12 @@ class ProductView {
     if (!title || !quantity || !category) return;
     Storage.saveProducts({ title, quantity, category });
     this.products = Storage.getAllProducts();
-    this.createProductsList();
+    this.createProductsList(this.products);
   }
 
-  createProductsList() {
+  createProductsList(products) {
     let result = "";
-    this.products.forEach((item) => {
+    products.forEach((item) => {
       const selectedCategory = Storage.getAllCategories().find(
         (c) => c.id == item.category
       );
@@ -53,6 +55,14 @@ class ProductView {
 
     const productsDOM = document.getElementById("products-list");
     productsDOM.innerHTML = result;
+  }
+
+  searchProduct(e) {
+    const value = e.target.value.trim().toLowerCase();
+    const filteredProducts = this.products.filter((p) =>
+      p.title.toLowerCase().includes(value)
+    );
+    this.createProductsList(filteredProducts);
   }
 }
 
